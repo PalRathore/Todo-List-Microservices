@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Assignment Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon">📝</span>
+      <h2 class="logo-text">Planner</h2>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="menu-item active" onclick="scrollToSection('dashboard')">
+        <span class="menu-icon">🏠</span>
+        <span class="menu-label">Dashboard</span>
+      </div>
+      <div class="menu-item" onclick="scrollToSection('assignments')">
+        <span class="menu-icon">📋</span>
+        <span class="menu-label">Assignments</span>
+      </div>
+      <div class="menu-item" onclick="scrollToSection('analytics')">
+        <span class="menu-icon">📊</span>
+        <span class="menu-label">Analytics</span>
+      </div>
+    </nav>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main" id="dashboard">
+
+    <div class="top-bar">
+      <h1 class="page-title">📚 Assignment To-Do List</h1>
+      <div class="bell-wrap">
+        <span class="bell-icon">🔔</span>
+        <span class="bell-badge" id="remCount">0</span>
+      </div>
+    </div>
+
+    <!-- TOP ROW -->
+    <div class="top-row">
+
+      <!-- LEFT STATS -->
+      <div class="stats">
+        <div class="card" id="cardTotal">
+          <p class="card-label">Total</p>
+          <h2 id="statTotal">0</h2>
+          <div class="card-bar"><div class="card-bar-fill total-fill"></div></div>
+        </div>
+        <div class="card" id="cardPending">
+          <p class="card-label">Pending</p>
+          <h2 id="statPending">0</h2>
+          <div class="card-bar"><div class="card-bar-fill pending-fill"></div></div>
+        </div>
+        <div class="card" id="cardOverdue">
+          <p class="card-label">Overdue</p>
+          <h2 id="statOverdue">0</h2>
+          <div class="card-bar"><div class="card-bar-fill overdue-fill"></div></div>
+        </div>
+      </div>
+
+      <!-- CENTER IMAGE -->
+      <div class="image-box">
+        <img src="msatodo.png" alt="Assignment illustration">
+        <div class="image-overlay"></div>
+      </div>
+
+      <!-- RIGHT FORM -->
+      <div class="add-box">
+        <h3 class="form-title">Add Assignment</h3>
+        <div class="input-group">
+          <input id="title" placeholder="Title" autocomplete="off">
+          <span class="input-line"></span>
+        </div>
+        <div class="input-group">
+          <input id="description" placeholder="Description" autocomplete="off">
+          <span class="input-line"></span>
+        </div>
+        <div class="input-group">
+          <input id="dueDate" type="date">
+          <span class="input-line"></span>
+        </div>
+        <button class="add-btn" onclick="addAssignment()">
+          <span class="btn-text">Add Assignment</span>
+          <span class="btn-ripple"></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-box" id="assignments">
+      <h3 class="section-title">Assignments</h3>
+      <div class="table-head">
+        <span>Title</span>
+        <span>Description</span>
+        <span>Deadline</span>
+        <span>Status</span>
+        <span>Action</span>
+      </div>
+      <div id="tblBody"></div>
+      <div class="empty-state" id="emptyState">
+        <span>✨ No assignments yet. Add one above!</span>
+      </div>
+    </div>
+
+    <!-- CHARTS -->
+    <div class="charts" id="analytics">
+      <div class="chart-card">
+        <h3 class="section-title">Assignments by Date</h3>
+        <canvas id="barChart"></canvas>
+      </div>
+      <div class="chart-card">
+        <h3 class="section-title">Status Overview</h3>
+        <canvas id="pieChart"></canvas>
+        <div class="pie-legend" id="pieLegend"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="popup"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
